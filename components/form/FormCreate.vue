@@ -2,6 +2,7 @@
 	<FormulateForm
 		v-slot="{ isValid }"
 		class="space-y-3 p-4"
+		name="create"
 		@submit="createLink"
 	>
 		<div class="my-2 flex flex-col space-y-4">
@@ -10,7 +11,7 @@
 				name="Link name"
 				type="text"
 				label="Link name"
-				label-class="text-neutral-content"
+				label-class="text-neutral-focus"
 				validation="required|min:5"
 				input-class="input input-bordered w-full"
 				error-class="text-red-500 text-xs mb-1"
@@ -21,7 +22,7 @@
 				name="Description"
 				type="text"
 				label="Description"
-				label-class="text-neutral-content"
+				label-class="text-neutral-focus"
 				validation="required|min:3"
 				input-class="input input-bordered w-full"
 				error-class="text-red-500 text-xs mb-1"
@@ -30,8 +31,8 @@
 				v-model="linkInfo.website_url"
 				name="Website URL"
 				type="text"
-				label="URL"
-				label-class="text-neutral-content"
+				label="Website URL (must start with http:// or https://)"
+				label-class="text-neutral-focus"
 				validation="required|min:3"
 				input-class="input input-bordered w-full"
 				error-class="text-red-500 text-xs mb-1"
@@ -39,8 +40,8 @@
 		</div>
 		<FormulateInput
 			type="submit"
-			label="Submit"
-			:disabled="!isValid"
+			:label="loading ? 'Adding link...' : 'Add link'"
+			:disabled="!isValid || loading"
 			input-class="btn btn-block btn-primary mt-5"
 		/>
 	</FormulateForm>
@@ -48,6 +49,12 @@
 
 <script>
 export default {
+	props: {
+		loading: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	data() {
 		return {
 			linkInfo: {
@@ -55,13 +62,15 @@ export default {
 				description: '',
 				website_url: '',
 			},
-			loading: false,
 		}
 	},
-
 	methods: {
-		createLink() {
-			this.$emit('createLink', this.linkInfo)
+		async createLink() {
+			await this.$emit('createLink', this.linkInfo)
+			this.reset()
+		},
+		reset() {
+			this.$formulate.reset('create')
 		},
 	},
 }

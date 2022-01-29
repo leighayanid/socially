@@ -56,7 +56,7 @@ export default {
 		await this.$store.dispatch('link/fetchUserLinks', {
 			username: this.username,
 		})
-		this.links = this.userLinks
+		this.links = this.searchUserLinks
 		this.user = this.userInfo
 	},
 
@@ -66,10 +66,15 @@ export default {
 	// eslint-disable-next-line vue/order-in-components
 	computed: {
 		...mapState({
-			userLinks: (state) => state.link.userLinks,
-			userInfo: (state) => state.user.user,
+			userLinks: (state) => state.link.searchUserLinks,
+			searchUserLinks: (state) => state.link.searchUserLinks,
+			userInfo: (state) => state.user.searchUser,
 			isSearching: (state) => state.link.searching,
 		}),
+	},
+
+	beforeDestroy() {
+		this.$store.commit('link/clearUserLinks')
 	},
 }
 </script>

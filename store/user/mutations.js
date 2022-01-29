@@ -2,6 +2,9 @@ export default {
   setUser(state, user) {
     state.user = user
   },
+  setSearchUser(state, user) {
+    state.searchUser = user
+  },
   setAvatar(state) {
     state.avatar = state.user.avatar_url
   },

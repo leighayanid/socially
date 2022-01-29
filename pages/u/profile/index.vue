@@ -14,7 +14,7 @@
 			<div v-else>
 				<div class="flex flex-col mb-5">
 					<base-avatar :img-src="user.avatar_url" />
-					<h1 class="text-2xl capitalize mt-2 text-base-100">
+					<h1 class="text-2xl capitalize mt-2">
 						{{ user.first_name }} {{ user.last_name }}
 					</h1>
 				</div>
@@ -44,8 +44,8 @@ export default {
 
 	data() {
 		return {
-			links: [],
-			user: [],
+			links: null,
+			user: {},
 			username: '',
 		}
 	},
@@ -63,6 +63,8 @@ export default {
 	},
 
 	activated() {
+		// eslint-disable-next-line no-console
+		console.log(this.$store.state.link.userLinks)
 		this.$fetch()
 	},
 	// eslint-disable-next-line vue/order-in-components

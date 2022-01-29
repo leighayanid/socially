@@ -66,13 +66,41 @@
 
 			<div class="m-8 relative space-y-4">
 				<div class="">
-					<h1 class="mb-10 text-5xl text-base-100 font-bold">
-						Your social links in one account
-					</h1>
+					<div class="flex flex-col mb-10">
+						<h1 class="text-5xl font-bold text-center">
+							{{
+								!user
+									? 'Your social links in 	one place'
+									: `Hello, ` + user.first_name + `👋`
+							}}
+						</h1>
+						<button
+							v-if="user"
+							class="btn btn-link flex items-center"
+							@click="goto(user.username)"
+						>
+							{{ `https://localhost:3000/` + user.username }}
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-6 w-6"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+								/>
+							</svg>
+						</button>
+					</div>
+
 					<div class="flex">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							class="h-16 w-16 mr-5 text-secondary"
+							class="h-14 w-14 mr-5 text-secondary"
 							fill="none"
 							viewBox="0 0 24 24"
 							stroke="currentColor"
@@ -84,14 +112,15 @@
 								d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 							/>
 						</svg>
-						<p class="mb-5 text-xl text-gray-800">
-							Curate all your social network accounts in one place.
+						<p class="mb-5 text-xl">
+							Curate all your social network accounts, music and payment links,
+							blogs all in one place.
 						</p>
 					</div>
 					<div class="flex">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							class="h-16 w-16 mr-5 text-secondary"
+							class="h-14 w-14 mr-5 text-secondary"
 							fill="none"
 							viewBox="0 0 24 24"
 							stroke="currentColor"
@@ -103,18 +132,40 @@
 								d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
 							/>
 						</svg>
-						<p class="mb-5 text-xl text-gray-800">
+						<p class="mb-5 text-xl">
 							Let your audience grow and share your content with them.
 						</p>
 					</div>
 
-					<div class="mx-auto flex items-center">
+					<div class="mx-auto w-full flex items-center">
 						<nuxt-link
+							v-if="!$store.state.user.user"
 							to="/register"
-							class="btn btn-secondary text-focus rounded-full mt-5"
+							class="btn btn-secondary mx-auto text-focus rounded-full mt-5"
 						>
 							Get started for free</nuxt-link
 						>
+						<div v-else class="flex space-x-5 mx-auto">
+							<nuxt-link
+								to="/u/new"
+								class="btn btn-secondary mx-auto text-focus rounded-full mt-5"
+							>
+								Add links now</nuxt-link
+							>
+							<nuxt-link
+								to="/u/profile/edit"
+								class="
+									btn btn-outline
+									mx-auto
+									border-content-focus
+									rounded-full
+									text-slate-800
+									mt-5
+								"
+							>
+								Update profile</nuxt-link
+							>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -123,5 +174,31 @@
 </template>
 
 <script>
-export default {}
+export default {
+	props: {
+		user: {
+			type: Array,
+			default: () => {
+				return [
+					{
+						id: 1,
+						first_name: '',
+						last_name: '',
+						username: '',
+					},
+				]
+			},
+		},
+	},
+
+	methods: {
+		goto(username) {
+			window.open(`http://localhost:3000/${username}`)
+		},
+	},
+}
 </script>
+
+<style scoped>
+[v-cloak] { display: none }
+</style>

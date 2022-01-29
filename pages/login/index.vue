@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="login-form">
-			<div class="rounded bordered my-auto">
+			<div class="rounded my-auto">
 				<h1 class="text-3xl font-bold mb-2">Login</h1>
 				<div class="form-group">
 					<FormulateForm
@@ -82,14 +82,17 @@
 							:disabled="!isValid || isLoading"
 							:input-class="
 								isLoading
-									? 'btn btn-block btn-secondary loading disabled'
-									: 'btn btn-block btn-secondary'
+									? 'btn btn-block btn-secondary rounded-full loading disabled'
+									: 'btn btn-block btn-secondary rounded-full'
 							"
 						/>
 					</FormulateForm>
 				</div>
 				<div class="divider mt-10">Don't have an account yet?</div>
-				<nuxt-link to="/register" class="btn btn-block btn-outline">
+				<nuxt-link
+					to="/register"
+					class="btn btn-block btn-outline rounded-full"
+				>
 					Register</nuxt-link
 				>
 			</div>
@@ -115,6 +118,12 @@ export default {
 		isLoading() {
 			return this.$store.state.auth.loading
 		},
+	},
+
+	created() {
+		if (this.$supabase.auth.user()) {
+			this.$router.push('/u/profile')
+		}
 	},
 
 	methods: {

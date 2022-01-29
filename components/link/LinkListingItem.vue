@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<base-card class="md:flex-row flex-col">
+	<div class="flex flex-row items-center space-x-2">
+		<base-card class="md:flex-row flex-col flex-1">
 			<button
 				class="flex btn-primary btn-ghost btn-block"
 				@click="goto(link.website_url)"
@@ -28,6 +28,20 @@
 				</div>
 			</button>
 		</base-card>
+		<button
+			v-if="
+				$supabase.auth.session() &&
+				$supabase.auth.session().user.id === link.user_id
+			"
+			:class="
+				isDeleting
+					? `btn btn-sm btn-danger`
+					: `btn btn-sm btn-danger disabled  `
+			"
+			@click="deleteItem(link)"
+		>
+			Delete
+		</button>
 	</div>
 </template>
 
@@ -37,9 +51,19 @@ export default {
 	// eslint-disable-next-line vue/require-prop-types
 	props: ['link'],
 
+	computed: {
+		isDeleting() {
+			return this.$store.state.link.loading
+		},
+	},
+
 	methods: {
 		goto(link) {
 			window.open(link)
+		},
+		deleteItem(link) {
+			// emit delete
+			this.$emit('delete', link)
 		},
 	},
 }

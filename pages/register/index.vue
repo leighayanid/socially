@@ -3,7 +3,9 @@
 		<div class="login-form">
 			<div class="bordered rounded-box">
 				<h1 class="text-3xl font-bold mb-2">Sign up</h1>
-				<p class="text-lg mb-5">Create your account. It's free. Forever.</p>
+				<p class="text-lg text-gray-900 mb-5">
+					Create your account. It's free. Forever.
+				</p>
 				<div class="form-group">
 					<FormulateForm
 						v-slot="{ isValid }"
@@ -138,15 +140,15 @@
 							label="Sign Up"
 							:input-class="
 								isLoading
-									? 'btn btn-block btn-secondary loading'
-									: 'btn btn-block btn-secondary'
+									? 'btn btn-block btn-secondary rounded-full loading'
+									: 'btn btn-block btn-secondary rounded-full'
 							"
 							:disabled="!isValid || isLoading"
 						/>
 					</FormulateForm>
 				</div>
 				<div class="divider">or</div>
-				<nuxt-link to="/login" class="btn btn-block btn-outline"
+				<nuxt-link to="/login" class="btn btn-block btn-outline rounded-full"
 					>Login</nuxt-link
 				>
 			</div>
@@ -172,6 +174,12 @@ export default {
 		isLoading() {
 			return this.$store.state.auth.loading
 		},
+	},
+
+	created() {
+		if (this.$store.state.auth.user) {
+			this.$router.push('/')
+		}
 	},
 
 	methods: {

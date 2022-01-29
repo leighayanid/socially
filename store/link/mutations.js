@@ -9,17 +9,20 @@ export default {
   setUserLinks(state, links) {
     state.userLinks = links
   },
+  setSearchUserLinks(state, links) {
+    state.searchUserLinks = links
+  },
   setUserLink(state, link) {
     state.userLink = link
+  },
+  clearUserLinks(state) {
+    state.userLinks = []
   },
   addLink(state, link) {
     state.links.push(link)
   },
   spliceLink(state, index) {
     state.userLinks.splice(index, 1)
-  },
-  setAllJobs(state, jobs) {
-    state.allJobs = jobs
   },
   setLink(state, link) {
     state.link = link

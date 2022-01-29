@@ -29,6 +29,7 @@
     "nuxt-supabase": "^2.0.0",
     "theme-change": "^2.0.2",
     "vue-gravatar": "^1.4.1",
+    "vue-js-modal": "^2.0.1",
     "vue-paginate": "^3.6.0",
     "vuex-persistedstate": "^4.1.0"
   },

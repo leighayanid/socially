@@ -2,8 +2,7 @@
 <template>
 	<div class="md:px-32 px-2 md:py-20 py-4">
 		<div class="w-1/2 mx-auto">
-			<h1 class="text-5xl mb-5 text-neutral-content">Hello 👋</h1>
-			<p class="text-xl">Let's complete your profile before continuing..</p>
+			<h1 class="text-5xl mb-5">Hello, {{ user.first_name }} 👋</h1>
 			<div class="profile-pic flex flex-col">
 				<div v-if="!isEmpty(user) && user.avatar_url" class="avatar">
 					<div class="rounded-full w-24 h-24 mr-10">
@@ -17,7 +16,7 @@
 			<div class="flex flex-col w-full">
 				<FormulateForm
 					v-slot="{ isValid }"
-					class="w-full text-neutral-focus"
+					class="w-full"
 					@submit="updateProfile()"
 				>
 					<div class="flex flex-col">
@@ -29,7 +28,7 @@
 							help="Select a png, jpg or gif to upload."
 							validation="mime:image/jpeg,image/png,image/gif"
 							input-class="input input-bordered border-dashed p-2 mb-5"
-							help-class="text-sm text-neutral-content"
+							help-class="text-sm"
 							upload-behavior="delayed"
 						/>
 						<button
@@ -48,7 +47,7 @@
 							name="Username"
 							type="text"
 							label="Username"
-							label-class="text-neutral-content"
+							label-class=""
 							validation="required|min:3"
 							input-class="input input-bordered"
 							error-class="text-red-500 text-xs mb-1"
@@ -61,7 +60,7 @@
 							name="First Name"
 							type="text"
 							label="First Name"
-							label-class="text-neutral-content"
+							label-class=""
 							validation="required|min:3"
 							input-class="input input-bordered"
 							error-class="text-red-500 text-xs mb-1"
@@ -71,7 +70,7 @@
 							name="Last Name"
 							type="text"
 							label="Last Name"
-							label-class="text-neutral-content ml-5"
+							label-class=" ml-5"
 							validation="required|min:3"
 							input-class="input  input-bordered ml-5"
 							error-class="text-red-500 text-xs mb-1"
@@ -94,6 +93,7 @@
 
 <script>
 export default {
+	middleware: ['isAuth'],
 	data() {
 		return {
 			userInfo: {
@@ -141,7 +141,7 @@ export default {
 					)
 				if (data) {
 					const { publicURL } = this.$supabase.storage
-						.from('avatars')
+						.from('profile')
 						.getPublicUrl(data.Key.substring(8))
 					this.updateAvatar(publicURL)
 					this.avatar = null

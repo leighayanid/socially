@@ -5,6 +5,7 @@
 				v-for="(link, index) in paginated('links')"
 				:key="index"
 				:link="link"
+				@delete="deleteLink(link, index)"
 			/>
 		</paginate>
 		<paginate-links
@@ -32,6 +33,15 @@ export default {
 		setTimeout(() => {
 			this.shown = true
 		}, 1000)
+	},
+
+	methods: {
+		deleteLink(link, index) {
+			this.$store.dispatch('link/deleteLink', {
+				id: link.id,
+				index,
+			})
+		},
 	},
 }
 </script>

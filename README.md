@@ -1,69 +1,133 @@
-# socially - store your social media accounts, payments link, etc. and share to your audience.
+# socially 👋
 
-## Build Setup
+Just another linktr.ee clone.
+
+Store all your social links in one place. Add your social media links, music playlist links, payment links, blogs etc.
+
+Powered by Nuxt.js and Supabase.
+
+`Note: This project is still in development.`
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+![Build](https://img.shields.io/appveyor/build/leighayanid/socially)
+
+![Image](https://res.cloudinary.com/rentapp/image/upload/v1643505685/socially_uifak4.png)
+
+## [Demo](https:socially-v1.vercel.app)
+
+## App Features
+
+- User Authentication
+- Add unlimited links
+- Shareable links
+- Profile Management
+
+## Todo Features
+
+- Stats
+- Themes
+
+## Tech Stack
+
+### Client | Front-end 🔥
+
+- Nuxt.js 2 (SSR)
+- TailwindCSS 💅
+- DaisyUI 💮
+
+### Server | Backend 🔥
+
+- Vercel
+- Supabase
+
+## Supabase Features Used ⚡
+
+- 🔐 Supabase Auth
+- 🗄️ SUpabase Database
+- 💾 Supabase Storage
+
+## Vue Plugins 🔌
+
+- VueFormulate
+- vuexPersistedstate
+- vue-paginate
+- vuex
+
+## Nuxt Modules
+
+- @nuxtjs/pwa
+- nuxt-supabase
+- @nuxtjs/toast
+- @nuxtjs/date-fns
+- @nuxtjs/dotenv
+- @nuxtjs/tailwindcss
+- @nuxtjs/stylelint-module
+- @nuxtjs/eslint-module
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`SUPABASE_URL`
+
+`SUPABASE_KEY`
+
+## Run Locally
+
+Clone the project
 
 ```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+  git clone https://github.com/leighayanid/socially
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+Go to the project directory
 
-## Special Directories
+```bash
+  cd socially
+```
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+Install dependencies
 
-### `assets`
+```bash
+  npm install
+```
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+Create a new Supabase project.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+    - Copy and paste the `SUPABASE_URL` and `SUPABASE_KEY` inside `.env` file.
 
-### `components`
+    - Go to project console.
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+    - Open the query page.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+    - Create a new query.
 
-### `layouts`
+    - Copy the `schema.sql` inside the project folder and paste inside the Supabase SQL editor.
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+    - Finally run the script.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+Going back to the client code:
 
+Start the server
 
-### `pages`
+```bash
+  npm run dev
+```
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+If everything works fine, your local copy of socially should be up and running.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+## Authors 👨‍👦
 
-### `plugins`
+- [@leighayanid](https://www.github.com/leighayanid)
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+## Contributing
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+Contributions are always welcome!
 
-### `static`
+See `contributing.md` for ways to get started.
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+Please adhere to this project's `code of conduct`.
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+## License
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+[MIT](https://choosealicense.com/licenses/mit/)

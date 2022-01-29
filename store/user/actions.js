@@ -54,7 +54,7 @@ export default {
         .match({ username })
         .single()
       if (data) {
-        commit('setUser', data)
+        commit('setSearchUser', data)
       } else {
         commit('setError', error)
       }

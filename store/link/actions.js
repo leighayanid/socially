@@ -9,8 +9,8 @@ export default {
         },
       ])
       if (data) {
-        commit('addLink', data)
         this.$toast.success('Link added..')
+        commit('addLink', data)
       } else {
         commit('setError', error)
       }
@@ -30,7 +30,7 @@ export default {
         .select(`*, profiles!inner(username)`)
         .eq('profiles.username', username)
       if (data) {
-        commit('setUserLinks', data)
+        commit('setSearchUserLinks', data)
       } else {
         commit('setError', error.message)
       }

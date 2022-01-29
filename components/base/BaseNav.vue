@@ -44,7 +44,7 @@
 						</nuxt-link>
 						<nuxt-link
 							to="/u/profile"
-							class="btn btn-primary text-neutral btn-sm rounded-full"
+							class="btn btn-primary btn-sm rounded-full"
 						>
 							Profile
 						</nuxt-link>
@@ -100,6 +100,7 @@ export default {
 	methods: {
 		signOut() {
 			this.$store.dispatch('auth/logout')
+			localStorage.clear()
 		},
 
 		isEmpty(obj) {

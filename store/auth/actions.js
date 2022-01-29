@@ -8,7 +8,7 @@ export default {
       })
       if (user) {
         this.$toast.success('You are now logged in.')
-        this.$router.push('/u/profile')
+        this.$router.push('/')
         commit('setUser', user)
         commit('setUserId', user.id)
       } else {
@@ -23,7 +23,7 @@ export default {
     }
   },
 
-  async signUp({ commit }, { email, password}) {
+  async signUp({ commit }, { email, password }) {
     commit('setLoading', true)
     try {
       const { user, error } = await this.$supabase.auth.signUp({
@@ -47,16 +47,14 @@ export default {
   },
 
   async logout({ commit }) {
-    commit('setLoading', true)
     try {
       await this.$supabase.auth.signOut()
     } catch (error) {
       commit('setError', error.message)
       throw error
     } finally {
-      commit('setLoading', false)
       this.$router.go()
-      localStorage.removeItem('vuex')
+      commit('setLoading', false)
     }
   },
 

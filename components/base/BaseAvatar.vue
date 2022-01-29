@@ -1,7 +1,7 @@
 <template>
 	<div class="avatar">
-		<div class="rounded-full w-32 h-32 p-2">
-			<img :src="imgSrc" />
+		<div class="w-32 h-32 p-2">
+			<img :src="imgSrc" class="rounded-full" />
 		</div>
 	</div>
 </template>
