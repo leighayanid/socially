@@ -153,7 +153,7 @@
 								Add links now</nuxt-link
 							>
 							<nuxt-link
-								to="/u/profile/edit"
+								to="/u/settings/account"
 								class="
 									btn btn-outline
 									mx-auto
