@@ -65,14 +65,7 @@ export default {
 	data() {
 		return {
 			userInfo: {
-				first_name: '',
-				last_name: '',
-				bio: '',
-				complete_address: '',
 				username: '',
-				resume_url: '',
-				work_experience: '',
-				skills: '',
 				avatar_url: '',
 			},
 			avatar: '',
