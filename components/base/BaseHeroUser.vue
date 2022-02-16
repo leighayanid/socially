@@ -64,12 +64,29 @@
         "
       ></div>
 
-      <div class="m-8 relative space-y-4">
+      <div class="m-8 relative space-y-4" v-if="user">
         <div class="">
           <div class="flex flex-col mb-10">
             <h1 class="text-5xl font-bold text-center">
-              Your social links in one place
+              {{ `Hello, ` + user.first_name + `👋` }}
             </h1>
+            <button @click="openLink()" class="btn btn-link flex items-center">
+              {{ $config.baseURL + '/' + user.username }}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </button>
           </div>
 
           <div class="flex">
@@ -113,12 +130,27 @@
           </div>
 
           <div class="mx-auto w-full flex items-center">
-            <nuxt-link
-              to="/register"
-              class="btn btn-secondary mx-auto text-focus rounded-full mt-5"
-            >
-              Get started for free</nuxt-link
-            >
+            <div class="flex space-x-5 mx-auto">
+              <nuxt-link
+                to="/u/new"
+                class="btn btn-secondary mx-auto text-focus rounded-full mt-5"
+              >
+                Add links now</nuxt-link
+              >
+              <nuxt-link
+                to="/u/settings/account"
+                class="
+                  btn btn-outline
+                  mx-auto
+                  border-content-focus
+                  rounded-full
+                  text-slate-800
+                  mt-5
+                "
+              >
+                Update profile</nuxt-link
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -127,6 +159,22 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    user: {
+      type: Array,
+      required: true,
+    },
+  },
+
+  methods: {
+    openLink(route) {
+      window.open(this.$config.baseURL + '/' + this.user.username)
+    },
+  },
+}
 </script>
 
+<style scoped>
+[v-cloak] { display: none }
+</style>
