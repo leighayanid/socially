@@ -1,7 +1,7 @@
 <template>
   <div>
-    <BaseHeroUser v-if="$supabase.auth.session()" :user="user || []" />
-    <BaseHero v-else />
+    <lazy-base-hero-user v-if="$supabase.auth.session()" :user="user || []" />
+    <lazy-base-hero v-else />
 
     <div class="grid place-items-center">
       <img
