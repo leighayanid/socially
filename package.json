@@ -36,7 +36,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
     "@commitlint/cli": "^15.0.0",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/config-conventional": "^17.0.0",
     "@nuxt/test-utils": "^0.2.2",
     "@nuxtjs/date-fns": "^1.5.0",
     "@nuxtjs/dotenv": "^1.4.1",
